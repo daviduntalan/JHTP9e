@@ -67,7 +67,7 @@ public class CommissionEmployee extends Object {
     }
     
     public double earnings() {
-        return commissionRate * grossSales;
+        return getCommissionRate() * getGrossSales();
     }
     
     @Override
