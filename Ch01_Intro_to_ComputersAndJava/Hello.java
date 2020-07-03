@@ -1,7 +1,7 @@
 package Ch01_Intro_to_ComputersAndJava;
 
 /**
- *
+ * First Java Application.
  * @author David
  */
 public class Hello {
