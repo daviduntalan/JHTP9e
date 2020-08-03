@@ -8,7 +8,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+
 /**
+ * Guide to this Code are coming from: https://youtu.be/nly_2b9QeO4
+ * 
  * Things you need...
  * 
  * Existing database
@@ -28,7 +32,7 @@ import java.util.logging.Logger;
  * 1. connect to DB using JDBC URL
  * 2. create statement object
  * 3. invoke statement.executeQuery on query you're passing to the DB
- * 4. fetch the required daa using the ResultSet
+ * 4. fetch the required data using the ResultSet
  * 5. close DB resources
  * 6. run the application
  * 
@@ -41,25 +45,38 @@ import java.util.logging.Logger;
 public class IQ13_HowToConnect_SQLServerDB {
 
     public static void main(String[] args) {
-        
-        String server = "David-PC/SQLEXPRESS"; // or localhost\SQLEXPRESS
+               
+        // Makre sure that your TCP/IP were Enabled.
+        String server = "127.0.0.1"; // localhost or David-PC
         String port = "64990"; // from SqlServer Config Mgr./NetProtocol for SQLExpress/IP Addresses/TCP Dynamic Ports
         String user = "sa";
         String password = "admin1234";
-        String database = "StudentDB"; // table: Grades (ID, Name, Subject, Grade)
+        String database = "StudentDB"; // table: Grades (ID, Name, Subject, Grade)                
+        /*
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         
-        String jdbcUrl = "jdbc:sqlserver://" + server + ":" + port 
-                + ";user="  + user + ";password=" + password 
-                + ";databaseName=" + database + "";
+        String jdbcUrl = String.format(
+                "jdbc:sqlserver://%s:%s;databaseName=%s;user=%s;password=%s", 
+                server, port, database, user, password);
+        */        
         
         Connection conn = null;
         Statement st = null; 
         ResultSet rs = null; 
         
+        SQLServerDataSource ds = new SQLServerDataSource();  
+        ds.setUser(user);  
+        ds.setPassword(password);  
+        ds.setServerName(server);  
+        ds.setPortNumber(Integer.parseInt(port));
+        ds.setDatabaseName(database);  
+        
         Grades grades = new Grades();
         
         try {
-            conn = DriverManager.getConnection(jdbcUrl, user, password);
+            // conn = DriverManager.getConnection(jdbcUrl, user, password);
+            conn = ds.getConnection();
+            
             st = conn.createStatement();
             rs = st.executeQuery("SELECT * FROM [StudentDB].[dbo].[Grades]");
             
@@ -73,7 +90,7 @@ public class IQ13_HowToConnect_SQLServerDB {
         } catch (SQLException ex) {
             Logger.getLogger(IQ13_HowToConnect_SQLServerDB.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            try {
+            try {                
                 rs.close();
                 st.close();
                 conn.close();
@@ -86,10 +103,16 @@ public class IQ13_HowToConnect_SQLServerDB {
 
 @lombok.Setter
 @lombok.Getter
-@lombok.ToString
+// @lombok.ToString
 class Grades {
     String id;
     String name;
     String subject;
     String grade;
+
+    @Override
+    public String toString() {
+        return String.format("Grades(id=%s, name=%-10s subject=%-7s, grade=%5s)", 
+                id, name, subject, grade);
+    }     
 }
