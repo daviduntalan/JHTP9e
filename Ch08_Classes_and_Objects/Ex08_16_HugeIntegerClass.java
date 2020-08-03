@@ -20,32 +20,34 @@ public class Ex08_16_HugeIntegerClass {
 
     public static void main(String[] args) {
 
-        String n1 = "9999999999999999999999999999999999999999";
+        String n1 = "9999999999999999999999999999999999999990";
         String n2 = "9999999999999999999999999999999999999999";
         HugeInteger h1 = new HugeInteger();
         HugeInteger h2 = new HugeInteger();
         h1.parse(n1);
         h2.parse(n2);
-        System.out.printf("h1: %40s\n", h1);
-        System.out.printf("h2: %40s\n", h2);
+        System.out.printf("      h1 : %41s\n", h1);
+        System.out.printf("      h2 : %41s\n", h2);
+        System.out.printf("h1  - h2 ? %41s\n", h1.subtract(h2));
+        System.out.printf("h1  + h2 ? %41s\n", h1.add(h2));
         System.out.printf("h1 == h2 ? %b\n", h1.isEqualTo(h2));
         System.out.printf("h1 != h2 ? %b\n", h1.isNotEqualTo(h2));
         System.out.printf("h1  > h2 ? %b\n", h1.isGreaterThan(h2));
         System.out.printf("h1 >= h2 ? %b\n", h1.isGreaterThanOrEqual(h2));
         System.out.printf("h1  < h2 ? %b\n", h1.isLessThan(h2));
         System.out.printf("h1 =< h2 ? %b\n", h1.isLessThanOrEqual(h2));
-        System.out.printf("h1 + h2 ? %s\n", h1.add(h2));
-        System.out.printf("h1 - h2 ? %s\n", h1.subtract(h2));
     }
     
 }
 
 class HugeInteger {
-    private final int SIZE = 40;
+    private final int SIZE = 41;
     private final int[] digits; // 40-element of digits to store integers
 
     public HugeInteger() {
         digits = new int[SIZE];
+        for(int i = 0; i < SIZE; ++i)
+            digits[i] = 0;
     }
    
     public void parse(String s) {
@@ -60,7 +62,7 @@ class HugeInteger {
         for (int i = 0; i < s.length(); ++i) {
             int digit = s.charAt(i) - 48;
             if (digit < 0 || digit > 9) {
-                System.out.printf("invalid digit at index: %d", i);
+                System.err.printf("invalid digit at index: %d", i);
                 return; 
             }
         }        
@@ -107,6 +109,8 @@ class HugeInteger {
     }
     
     public boolean isGreaterThanOrEqual(HugeInteger hi) {
+        if (toString().length() > hi.toString().length())
+            return true;
         for (int i = SIZE - 1; i > -1; --i) {
             if (digits[i] >= hi.digits[i]) {                
             } else return false;
@@ -115,6 +119,8 @@ class HugeInteger {
     }
     
     public boolean isLessThanOrEqual(HugeInteger hi) {
+        if (toString().length() < hi.toString().length())
+            return true;
         for (int i = SIZE - 1; i > -1; --i) {
             if (digits[i] <= hi.digits[i]) {                
             } else return false;
@@ -126,45 +132,57 @@ class HugeInteger {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         int startingIndex = 0;
-        // search for non-zero prefix index to extract digits
+        // skip leading zeros
         for (; startingIndex < SIZE; ++startingIndex) {
-            if (digits[startingIndex] != 0) {
-                for (int i = startingIndex; i < SIZE; ++i) 
-                    sb.append(digits[i]).append("");
-                startingIndex = SIZE; // break the loop
-            } // end if
-        } // end for
+            if (digits[startingIndex] != 0) break;
+        } 
+        for (int i = startingIndex; i < SIZE; ++i) {
+            sb.append(digits[i]);                
+        } 
         return String.format("%s", sb.toString());
     }       
 
     public HugeInteger add(HugeInteger h2) {
-        int h1size = toString().length();
-        int h2size = h2.toString().length();
-        int MAX = Math.max(h1size, h2size);
-        StringBuilder result = new StringBuilder();
-        // work within the minimum length of the two HugeInteger
-        for (int i = 0; i < MAX; ++i) {
-            // TODO add them all together.
-            // co = "                        1111111111111100";
-            // h1 = "9999999999999999999999999999999999999999";
-            // h2 = "+ pad with zeros 00000000678901234567890";
-            // rs = "                         678901234567889";
+        StringBuilder summation = new StringBuilder();
+        int op1, op2, sum, carry = 0;        
+        for (int i = SIZE-1; i > -1; --i) {           
+            op1 =    digits[i];
+            op2 = h2.digits[i];
+            sum = carry + op1 + op2;              
+            if (sum > 9) {
+                carry = sum / 10;
+                sum = sum % 10;                
+            } else { 
+                carry = 0;
+            }
+            summation.append(sum);
         }
-        HugeInteger sum = new HugeInteger();
-        sum.parse(result.toString());
-        return sum;
+        if (carry > 0) summation.append(carry);
+        
+        HugeInteger result = new HugeInteger();
+        result.parse(summation.reverse().toString());
+        return result;
     }
 
     public HugeInteger subtract(HugeInteger h2) {
-        int h1size = toString().length();
-        int h2size = h2.toString().length();
-        int MAX = Math.max(h1size, h2size);
-        StringBuilder result = new StringBuilder();        
-        for (int i = 0; i < MAX; ++i) {
-            
+        StringBuilder difference = new StringBuilder();
+        int op1, op2, diff, carry = 0;        
+        for (int i = SIZE-1; i > -1; --i) {           
+            op1 =    digits[i];
+            op2 = h2.digits[i];
+            diff = op1 - op2;              
+//            if (diff > 9) {
+//                carry = diff / 10;
+//                diff = diff % 10;                
+//            } else { 
+//                carry = 0;
+//            }
+            difference.append(diff);
         }
-        HugeInteger diff = new HugeInteger();
-        diff.parse(result.toString());
-        return diff;
+        // if (carry > 0) difference.append(carry);
+        
+        HugeInteger result = new HugeInteger();
+        result.parse(difference.reverse().toString());
+        return result;
     }
 }
