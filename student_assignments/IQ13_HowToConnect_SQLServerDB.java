@@ -46,11 +46,11 @@ public class IQ13_HowToConnect_SQLServerDB {
 
     public static void main(String[] args) {
                
-        // Makre sure that your TCP/IP were Enabled.
+        // Makre sure that your TCP/IP were Enabled from SQlServer Config Mgr.
         String server = "127.0.0.1"; // localhost or David-PC
         String port = "64990"; // from SqlServer Config Mgr./NetProtocol for SQLExpress/IP Addresses/TCP Dynamic Ports
-        String user = "sa";
-        String password = "admin1234";
+        String user = "sa"; // provide your own username and
+        String password = "admin1234"; // password here, thank you.
         String database = "StudentDB"; // table: Grades (ID, Name, Subject, Grade)                
         /*
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
