@@ -1,29 +1,27 @@
 package Ch09_OOP_Inheritance;
 
 /**
- * Fig. 9.4: CommissionEmployee class represents an employee paid a 
- * percentage of gross sales.
+ * Fig. 9.10: CommissionEmployee class uses method to 
+ * manipulate its private instance variables.
  * @author David
  */
-public class CommissionEmployee extends Object {
-    // protected class members are also visible to other classes 
-    // in the same package.
-    protected String firstName;
-    protected String lastName;
-    protected String socialSecurityNumber;
-    protected double grossSales; // gross weekly sales
-    protected double commissionRate; // commission percentage
+public class CommissionEmployee910 {
+    private String firstName;
+    private String lastName;
+    private String socialSecurityNumber;
+    private double grossSales; // gross weekly sales
+    private double commissionRate; // commission percentage
 
-    public CommissionEmployee(String first, String last, String ssn, double sales, double rate) {
+    public CommissionEmployee910(String first, String last, String ssn, double sales, double rate) {
         // implicit call to Object constructor occurs here
         /* We could validate the first and last names—perhaps to 
         ensure that they’re of a reasonable length. 
         Similarly, a social security number could be validated using 
         regular expressions to ensure that it contains nine digits, 
         with or without dashes (e.g., 123-45-6789 or 123456789). */
-        firstName = first;
-        lastName = last;
-        socialSecurityNumber = ssn;
+        setFirstName(first);
+        setLastName(last);
+        setSocialSecurityNumber(ssn);
         setGrossSales(sales);
         setCommissionRate(rate);
     }
@@ -79,11 +77,11 @@ public class CommissionEmployee extends Object {
     
     @Override
     public String toString() {
-        return String.format("commission employee: %s %s\n"
-                + "social security number: %s\n"
-                + "gross sales: %.2f\n"
-                + "commission rate: %.2f",
-                firstName, lastName, socialSecurityNumber, 
-                grossSales, commissionRate);
+        return String.format( "%s: %s %s\n%s: %s\n%s: %.2f\n%s: %.2f",
+                "commission employee", getFirstName(), getLastName(), 
+                "social security number", getSocialSecurityNumber(), 
+                "gross sales", getGrossSales(), 
+                "commission rate", getCommissionRate()
+        );
     }
 }
