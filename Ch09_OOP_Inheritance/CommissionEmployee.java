@@ -2,7 +2,9 @@ package Ch09_OOP_Inheritance;
 
 /**
  * Fig. 9.4: CommissionEmployee class represents an employee paid a 
- * percentage of gross sales.
+ * percentage of gross sales. 
+ * Relationship: is-a or inheritance. 
+ * Relationship: has-a or composition.
  * @author David
  */
 public class CommissionEmployee extends Object {
