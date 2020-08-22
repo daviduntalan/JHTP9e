@@ -9,7 +9,7 @@ package Ch10_OOP_Polymorphism;
  * to become “concrete” classes, from which you can instantiate objects. 
  * Otherwise, these subclasses, too, will be abstract. @author David
  */
-enum Color { RED, GREEN, BLUE };
+enum Color { RED, GREEN, BLUE, BLACK };
 
 /* An abstract class declares common attributes and behaviors (both
 abstract and concrete) of the various classes in a class hierarchy. 

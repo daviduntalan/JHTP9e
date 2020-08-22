@@ -1,27 +1,41 @@
 package Ch10_OOP_Polymorphism;
 
+import Ch08_Classes_and_Objects.Date;
+import java.time.LocalDate;
+
 /**
- * Fig. 10.9: Employee hierarchy test program.
- *
+ * Payroll System Modification. Modify the payroll system of Figs.
+ * 10.4-10.9 to include an additional Employee subclass PieceWorker
+ * that represents an employee whose pay is based on the number of pieces of
+ * merchandise produced. Class PieceWorker should contain private instance 
+ * variables wage (to store the employee’s wage per piece) and pieces (to store 
+ * the number of pieces produced). Provide a concrete implementation of method 
+ * earnings in class PieceWorker that calculates the employee’s earnings by 
+ * multiplying the number of pieces produced by the wage per piece. Create an 
+ * array of Employee variables to store references to objects of each concrete 
+ * class in the new Employee hierarchy. For each Employee, display its String 
+ * representation and earnings.
  * @author David
  */
-public class PayrollSystemTest {
+public class Ex10_10_PayrollSystemModification {
 
     public static void main(String[] args) {
-
+        
         // create subclass objects
         SalariedEmployee salariedEmployee = new SalariedEmployee(
-                "John", "Smith", "111-11-1111", 800.00);
+                "John", "Smith", new Date(12, 26, 1980), "111-11-1111", 800.00);
 
         HourlyEmployee hourlyEmployee = new HourlyEmployee(
-                "Karen", "Price", "222-22-2222", 16.75, 40);
-
+                "Karen", "Price", new Date(10, 24, 1985), "222-22-2222", 16.75, 40);
+        
         CommissionEmployee commissionEmployee = new CommissionEmployee(
-                "Sue", "Jones", "333-33-3333", 10000, .06);
+                "Sue", "Jones", new Date(8, 8, 1954), "333-33-3333", 10000, 0.06);
 
-        BasePlusCommissionEmployee basePlusCommissionEmployee
-                = new BasePlusCommissionEmployee(
-                        "Bob", "Lewis", "444-44-4444", 5000, .04, 300);
+        BasePlusCommissionEmployee basePlusCommissionEmployee = new BasePlusCommissionEmployee(
+                "Bob", "Lewis", new Date(1, 21, 1952), "444-44-4444", 5000, .04, 300);
+        
+        PieceWorker pieceWorker = new PieceWorker(
+                "Juan", "Dela Cruz", "444-44-4444", new Date(8, 1, 1982), 500, 1.2);
 
         System.out.println("Employees processed individually:\n");
 
@@ -33,6 +47,8 @@ public class PayrollSystemTest {
                 "earned", commissionEmployee.earnings());
         System.out.printf("%s\n%s: $%,.2f\n\n", basePlusCommissionEmployee,
                 "earned", basePlusCommissionEmployee.earnings());
+        System.out.printf("%s\n%s: $%,.2f\n\n", pieceWorker,
+                "earned", pieceWorker.earnings());
         
         // create four-element Employee array
         Employee2[] employees = new Employee2[] {
@@ -40,7 +56,8 @@ public class PayrollSystemTest {
             salariedEmployee,           // is-an Employee
             hourlyEmployee,             // is-an Employee
             commissionEmployee,         // is-an Employee
-            basePlusCommissionEmployee  // is-an Employee
+            basePlusCommissionEmployee, // is-an Employee
+            pieceWorker                 // is-an Employee
         };
         /* 10.5.7 Summary of the Allowed Assignments... pg.418 (456 of 1535)
         PS. because the subclass can have additional subclass-
@@ -82,8 +99,21 @@ public class PayrollSystemTest {
                         employee.getBaseSalary());
             } // end if
             
-            System.out.printf("earned $%,.2f\n\n", 
-                    currentEmployee.earnings()); // polymorphic here            
+            double earnings = currentEmployee.earnings(); // polymorphic here            
+            int employeesBirthMonth = currentEmployee.getBirthDate().getMonth();
+            int todaysMonth = LocalDate.now().getMonthValue();
+            
+            /* add a $100.00 bonus to the person's payroll amount if the current
+            month is the one in which the Employee's birthday occurs. */
+            if (todaysMonth == employeesBirthMonth) {                
+                double bonus = 100.0;
+                System.out.printf(
+                        "Happy Birthday %s - we've added %.2f bonus to your earnings. Enjoy! ^_^\n", 
+                        currentEmployee.getFirstName(), bonus);
+                earnings = earnings + bonus;
+            }
+            
+            System.out.printf("earned $%,.2f\n\n", earnings); 
         } // end for
         
         // get tyep name of each object in employees array
@@ -92,7 +122,6 @@ public class PayrollSystemTest {
                     i, employees[i].getClass().getSimpleName()
             );
         } // end for
-        
-    } // end main()
-
-} // end PayrollSystemTest
+    }
+    
+}

@@ -3,26 +3,25 @@ package Ch10_OOP_Polymorphism;
 import Ch08_Classes_and_Objects.Date;
 
 /**
- * Fig. 10.5: SalariedEmployee concrete class extends abstract class Employee.
- *
+ * Fig. 10.14: SalariedEmployee2 extends Employee2, which implements Payable.
  * @author David
  */
-public class SalariedEmployee extends Employee2 {
+public class SalariedEmployee2 extends Employee2 {
 
     private double weeklySalary;
 
-    public SalariedEmployee(String firstName, String lastName, String ssn,
+    public SalariedEmployee2(String firstName, String lastName, String ssn,
             double weeklySalary) {
         super(firstName, lastName, ssn); // pass to Employee constructor
-        setWeeklySalary(weeklySalary); // validate and store salary
+        setWeeklySalary(weeklySalary); // validate and store slary
     }
     
-   /* constructor for exercise 10.8 Payroll System Modification */
-    public SalariedEmployee(String firstName, String lastName, Date birthDate, String socialSecurityNumber, double weeklySalary) {
-        super(firstName, lastName, socialSecurityNumber, birthDate);
-        setWeeklySalary(weeklySalary); // validate and store salary
+    public SalariedEmployee2(String firstName, String lastName, Date birthDate, String ssn,
+            double weeklySalary) {
+        super(firstName, lastName, ssn, birthDate); // pass to Employee constructor
+        setWeeklySalary(weeklySalary); // validate and store slary        
     }
-    
+
     public double getWeeklySalary() {
         return weeklySalary;
     }
@@ -36,9 +35,17 @@ public class SalariedEmployee extends Employee2 {
             );
         }
     }
-
+    
     @Override
     public double earnings() {
+        return getWeeklySalary();
+    }    
+    
+    // Alternative to above code: earnings(). 
+    // calculate earnings; implement interface Payable method that 
+    // was abstract in superclass Employee2.
+    @Override
+    public double getPaymentAmount() {
         return getWeeklySalary();
     }
 
@@ -48,10 +55,5 @@ public class SalariedEmployee extends Employee2 {
                 "salaried employee", super.toString(),
                 "weekly salary", getWeeklySalary()
         );
-    }
-
-    @Override
-    public double getPaymentAmount() {
-        return earnings();
-    }
+    }   
 }

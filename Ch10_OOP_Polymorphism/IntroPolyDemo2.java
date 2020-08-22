@@ -11,13 +11,11 @@ package Ch10_OOP_Polymorphism;
  * variable.
  * @author David
  */
-abstract class AbstractShape {}
-abstract class TwoDimensionalShape extends AbstractShape {}
+
 class CircleClass extends TwoDimensionalShape {}
 // class SquareClass extends TwoDimensionalShape {}
 class TriangleClass extends TwoDimensionalShape {}
 
-abstract class ThreeDimensionalShape extends AbstractShape {}
 class SphereClass extends ThreeDimensionalShape {}
 class CubeClass extends ThreeDimensionalShape {}
 class TetrahedronClass extends ThreeDimensionalShape {}

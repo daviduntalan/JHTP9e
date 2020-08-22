@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root>
+    <person>
+        <firstname>David, Jr.</firstname>
+        <middlename>Caabay</middlename>
+        <lastname>Untalan</lastname>
+        <children>
+            <ref:child ref="1"/>
+        </children>
+    </person>
+    <children>
+        <data:child id="1">
+            <firstname>John David</firstname>
+            <middlename>Caleb</middlename>
+            <lastname>Pangan</lastname>
+        </data:child>
+    </children>
+    
+</root>

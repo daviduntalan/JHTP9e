@@ -1,42 +1,31 @@
 package Ch10_OOP_Polymorphism;
 
+import Ch08_Classes_and_Objects.Date;
+
 /**
  * Fig. 10.4: Employee abstract superclass.
  * @author David
  */
+@lombok.Getter
+@lombok.Setter
 public abstract class Employee {
     private String firstName;
     private String lastName;
     private String socialSecurityNumber;
+    private Date birthDate;
 
     public Employee(String firstName, String lastName, String socialSecurityNumber) {
         setFirstName(firstName);
         setLastName(lastName);
-        setSocialSecurityNumber(socialSecurityNumber);
-    }
+        setSocialSecurityNumber(socialSecurityNumber);        
+    }    
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getSocialSecurityNumber() {
-        return socialSecurityNumber;
-    }
-
-    public void setSocialSecurityNumber(String socialSecurityNumber) {
-        this.socialSecurityNumber = socialSecurityNumber;
+    /* constructor for exercise 10.8 Payroll System Modification */
+    public Employee(String firstName, String lastName, String socialSecurityNumber, Date birthDate) {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setSocialSecurityNumber(socialSecurityNumber);        
+        setBirthDate(birthDate);
     }
 
     @Override

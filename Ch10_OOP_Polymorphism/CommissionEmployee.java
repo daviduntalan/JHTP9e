@@ -1,11 +1,13 @@
 package Ch10_OOP_Polymorphism;
 
+import Ch08_Classes_and_Objects.Date;
+
 /**
  * Fig. 10.7: CommissionEmployee class extends abstract class Employee.
  *
  * @author David
  */
-public class CommissionEmployee extends Employee {
+public class CommissionEmployee extends Employee2 {
 
     private double grossSales; // gross weekly sales
     private double commissionRate; // commission percentage
@@ -16,7 +18,15 @@ public class CommissionEmployee extends Employee {
         setGrossSales(grossSales);
         setCommissionRate(commissionRate);
     }
-
+    
+    /* constructor for exercise 10.8 Payroll System Modification */
+    public CommissionEmployee(String firstName, String lastName, Date birthDate, String socialSecurityNumber,
+            double grossSales, double commissionRate) {
+        super(firstName, lastName, socialSecurityNumber, birthDate);
+        setGrossSales(grossSales);
+        setCommissionRate(commissionRate);
+    }
+    
     public double getCommissionRate() {
         return commissionRate;
     }
@@ -47,6 +57,11 @@ public class CommissionEmployee extends Employee {
     public double earnings() {
         return getCommissionRate() * getGrossSales();
     }
+    
+    @Override
+    public double getPaymentAmount() {        
+        return earnings();
+    }
 
     @Override
     public String toString() {
@@ -55,5 +70,5 @@ public class CommissionEmployee extends Employee {
                 "gross sales", getGrossSales(),
                 "commission rate", getCommissionRate()
         );
-    }
+    }    
 }
