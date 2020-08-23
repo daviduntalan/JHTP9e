@@ -7,7 +7,6 @@ package Ch02_Intro_to_JavaApplication;
 public class Ex02_28_CircleFormula {
 
     public static void main(String[] args) {
-        // TODO code application logic here
 
         double radius = 14;
         double diameter = 2 * radius;

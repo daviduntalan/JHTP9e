@@ -14,7 +14,7 @@ public class ClassObject {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         ClassObj co = new ClassObj();
         System.out.println(co.getClass()); // class Ch09_OOP_Inheritance.ClassObj
         System.out.println(co.getClass().getName()); // Ch09_OOP_Inheritance.ClassObj

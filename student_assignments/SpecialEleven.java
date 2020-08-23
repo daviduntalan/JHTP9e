@@ -3,7 +3,7 @@ package student_assignments;
 public class SpecialEleven {
 
     public static void main(String[] args) {
-        // TODO code application logic here
+
         for (int n = 10; n < 120; ++n) {
             if (isSpecialEleven(n) == true) {                
                 System.out.printf("%d is SPECIAL\n", n);                                                

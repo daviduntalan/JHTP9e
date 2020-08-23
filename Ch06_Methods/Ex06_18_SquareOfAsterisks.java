@@ -10,7 +10,7 @@ public class Ex06_18_SquareOfAsterisks {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         java.util.Scanner input = new java.util.Scanner(System.in);
         java.util.Random random = new java.util.Random();
         

@@ -31,7 +31,19 @@ public class Ex09_05_StudentHierarchy {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        Student[] students = {
+                new Freshman(),
+                new Sophomore(),
+                new Junior(),
+                new Senior(),
+                new DoctoralStudent(),
+                new MastersStudent()
+        };
+
+        for (Student student : students) {
+            System.out.println(student);
+        }
     }
     
 }

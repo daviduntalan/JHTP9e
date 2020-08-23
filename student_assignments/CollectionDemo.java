@@ -17,7 +17,7 @@ public class CollectionDemo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         List<String> tree = new TreeList<>();
         List<String> array = new ArrayList<>();
         List<String> linked = new LinkedList<>();

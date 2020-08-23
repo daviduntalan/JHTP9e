@@ -8,11 +8,8 @@ package Ch02_Intro_to_JavaApplication;
  */
 public class Welcome3 {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         System.out.println("Welcome\nto\nJava\nProgramming!");
     }
     

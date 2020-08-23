@@ -11,7 +11,7 @@ public class MathTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         System.out.printf("Math.abs( 23.7 ) = %f\n", Math.abs(23.7));
         System.out.printf("Math.abs( 0.0 ) = %f\n", Math.abs(0.0));
         System.out.printf("Math.abs( -23.7 ) = %f\n", Math.abs(-23.7));

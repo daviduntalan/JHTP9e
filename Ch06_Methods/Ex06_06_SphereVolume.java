@@ -15,7 +15,6 @@ public class Ex06_06_SphereVolume {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
 
         System.out.printf("Enter radius of a sphere: ");
         double radius = new java.util.Scanner(System.in).nextDouble();

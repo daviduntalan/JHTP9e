@@ -11,7 +11,7 @@ public class WhileCounter {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         int counter = 1; // declare and initialize control variable
         
         while (counter <= 10) { // loop-continuation condition

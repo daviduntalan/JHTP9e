@@ -10,7 +10,7 @@ public class Ex03_14_RaiseEmployees {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         Employee emp1 = new Employee("David, Jr.", "Untalan", 75000.00);
         Employee emp2 = new Employee("Salamona", "Utara", 50000.00);
         System.out.println(emp1);

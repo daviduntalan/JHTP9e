@@ -13,7 +13,7 @@ public class DrawSmileyTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         DrawSmiley panel = new DrawSmiley();
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

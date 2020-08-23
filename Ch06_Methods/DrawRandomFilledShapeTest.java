@@ -13,7 +13,7 @@ public class DrawRandomFilledShapeTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         DrawRandomFilledShape panel = new DrawRandomFilledShape();
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

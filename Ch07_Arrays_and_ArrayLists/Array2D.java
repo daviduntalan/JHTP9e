@@ -19,7 +19,7 @@ public class Array2D {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         int[][] jaggedArray = new int[][] {
             {1, 2},
             {3, 4, 5},

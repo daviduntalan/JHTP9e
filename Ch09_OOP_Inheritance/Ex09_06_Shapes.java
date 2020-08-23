@@ -29,7 +29,14 @@ class Quadrilateral extends Shape {}
 public class Ex09_06_Shapes {
 
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        Shape[] shapes = {
+                new Circle(), new Square(), new Triangle(),
+                new Sphere(), new Cube(), new Tetrahedron()
+        };
+
+        for (Shape shape : shapes)
+            System.out.println(shape);
     }
     
 }

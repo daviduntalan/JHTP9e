@@ -13,7 +13,7 @@ public class DrawBullsEyeTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         DrawBullsEye panel = new DrawBullsEye();
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

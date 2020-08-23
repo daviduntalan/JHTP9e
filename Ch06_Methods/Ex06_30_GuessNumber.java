@@ -10,7 +10,7 @@ public class Ex06_30_GuessNumber {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         java.util.Scanner input = new java.util.Scanner(System.in);
         java.util.Random random = new java.util.Random();
         System.out.printf("Guess a number between 1 and 1000.\n? ");

@@ -31,7 +31,7 @@ public class VarArgsTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         final int LENGTH = 10;
         double[] numbers = new double[LENGTH];
         

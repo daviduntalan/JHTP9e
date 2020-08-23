@@ -11,7 +11,7 @@ public class Ex07_13_Sales3x5 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         int[][] sales = new int[3][5];
         for (int colHead = 0; colHead < sales[0].length; ++colHead) {
             System.out.printf("\tCol-%d", colHead);

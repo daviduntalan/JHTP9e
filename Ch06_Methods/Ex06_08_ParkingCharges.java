@@ -26,7 +26,7 @@ public class Ex06_08_ParkingCharges {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         double hoursParked, charge, totalCharges = 0.0;
         int totalMins, hours, minutes;
         Scanner input = new Scanner(System.in);

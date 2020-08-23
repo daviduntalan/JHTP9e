@@ -13,7 +13,7 @@ public class PrimitiveTypes {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         System.out.printf("Byte range: %d to %d\n", Byte.MIN_VALUE, Byte.MAX_VALUE);
         System.out.printf("Short range: %,d to %,d\n", Short.MIN_VALUE, Short.MAX_VALUE);
         System.out.printf("Integer range: %,d to %,d\n", Integer.MIN_VALUE, Integer.MAX_VALUE);

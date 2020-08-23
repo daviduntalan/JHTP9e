@@ -37,7 +37,7 @@ public class AutoCloseableTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         try( 
                 FileCloseable fc = new FileCloseable(); 
                 FileReader fr = new FileReader("F:\\temp\\repoJava\\jHTP9e\\javaHTP9e\\src\\Ch11_ExceptionHandling\\AutoCloseableTest.java")

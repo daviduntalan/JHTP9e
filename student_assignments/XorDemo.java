@@ -10,7 +10,7 @@ public class XorDemo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         String orimsg = "This is a test";
         String encmsg = "";
         String decmsg = "";

@@ -10,7 +10,7 @@ public class Ex03_13_InvoiceTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         Invoice invoice = new Invoice();
         invoice.setPartNumber("P1234");
         invoice.setPartDescription("iPhone 4S");

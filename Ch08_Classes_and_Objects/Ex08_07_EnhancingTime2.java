@@ -24,7 +24,6 @@ public class Ex08_07_EnhancingTime2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         
         Time2 time = new Time2(0, 0, 0); int additionalSeconds = 10;
         for (int tick = 0; tick < 60 * 60 * 24 + additionalSeconds; ++tick) {

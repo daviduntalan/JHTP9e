@@ -11,7 +11,7 @@ public class Ex05_20_FindingPI {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         double pi = 4.0;
         double n = 3.0;
         int PI = 0;

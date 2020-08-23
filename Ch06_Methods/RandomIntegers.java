@@ -13,7 +13,7 @@ public class RandomIntegers {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         Random randomNumbers = new Random();
         // generates a random int value in the range -2,147,483,648 
         // to +2,147,483,647, inclusive.

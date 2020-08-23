@@ -104,7 +104,7 @@ class Rational {
         return gcd;
     }        
     
-    // TODO Review KhanAcademy for addition of fraction with different denominator    
+    // Review KhanAcademy for addition of fraction with different denominator
     public static Rational add(Rational r1, Rational r2) {
         // 3   5   3x4 + 5x5   12 + 25   +37
         // - + - = --------- = ------- = --- or 1.85
@@ -134,7 +134,7 @@ class Rational {
         return new Rational(numeratorProduct, denominatorProduct);
     }
     
-    // TODO Review KhanAcademy for division of fraction with different denominator
+    // Review KhanAcademy for division of fraction with different denominator
     public static Rational divide(Rational r1, Rational r2) {
         if (r2.getDenominator() == 0) {
             throw new IllegalArgumentException("cannot divide by zero.");

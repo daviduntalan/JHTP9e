@@ -11,7 +11,7 @@ public class Ex05_19_BooleanLogic {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         int i = 1, j = 2, k = 3, m = 2;
         System.out.println(i == 1); // true
         System.out.println(j == 3); // false

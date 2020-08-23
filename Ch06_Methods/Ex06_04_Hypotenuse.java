@@ -11,7 +11,7 @@ public class Ex06_04_Hypotenuse {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
     }
 
     // method hypotenuse, which takes two double-precision, 

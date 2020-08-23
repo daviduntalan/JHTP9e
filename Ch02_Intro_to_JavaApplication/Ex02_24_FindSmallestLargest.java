@@ -7,7 +7,6 @@ package Ch02_Intro_to_JavaApplication;
 public class Ex02_24_FindSmallestLargest {
 
     public static void main(String[] args) {
-        // TODO code application logic here
 
         int a = 50;
         int b = 20;
