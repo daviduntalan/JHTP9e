@@ -6,8 +6,6 @@ package Ch03_Intro_to_Classes;
  *
  * @author David
  */
-@lombok.Setter
-@lombok.Getter
 public class Account {
 
     private double balance; // instance variable that stores the balance.
@@ -36,4 +34,7 @@ public class Account {
             System.err.println("Debit amount is negative.");
         }
     }
+
+    public double getBalance() { return balance; }
+    public void setBalance(double balance) { this.balance = balance; }
 }

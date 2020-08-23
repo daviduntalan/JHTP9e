@@ -70,9 +70,8 @@ public class Ex08_15_RationalNumbers {
     
 }
 
-@lombok.Getter
-@lombok.Setter
 class Rational {
+
     private int numerator;
     private int denominator;
         
@@ -82,7 +81,13 @@ class Rational {
         // division will turn it to reduced form, kaya i named it lcd
         setNumerator(numerator / lcd); 
         setDenominator(denominator / lcd);
-    }        
+    }
+
+    public int getNumerator() { return numerator; }
+    public int getDenominator() { return denominator; }
+
+    public void setNumerator(int numerator) { this.numerator = numerator; }
+    public void setDenominator(int denominator) { this.denominator = denominator; }
     
     public static int gcd(int n1, int n2) {
         if (n1 + n2 < 2) {
@@ -153,5 +158,6 @@ class Rational {
         return String.format("%." + numberOfPrecision + "f", 
                 (double) getNumerator() / getDenominator() 
         );
-    }        
+    }
+
 }

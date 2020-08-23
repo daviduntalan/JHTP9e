@@ -31,8 +31,6 @@ public class IQ06_CyclicLinkedList {
 
 }
 
-@lombok.Getter
-@lombok.Setter
 class LinkedList {
     
     public Node head;
@@ -67,10 +65,11 @@ class LinkedList {
         
         return false;
     }
+
+    public Node getHead() { return head; }
+    public void setHead(Node head) { this.head = head; }
 }
 
-@lombok.Getter
-@lombok.Setter
 class Node {
     public String data;
     public Node next;
@@ -78,5 +77,11 @@ class Node {
     public Node(String data) {
         setData(data);
         setNext(null);
-    }        
+    }
+
+    public String getData() { return data; }
+    public Node getNext() { return next; }
+
+    public void setData(String data) { this.data = data; }
+    public void setNext(Node next) { this.next = next; }
 }

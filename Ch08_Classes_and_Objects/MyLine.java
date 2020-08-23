@@ -3,9 +3,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 /**
  * Fig. 8.18: MyLine class represents a line.
- * @author David
  */
-@lombok.Getter
+
 public class MyLine {
     private int x1; // x-coordinate of first endpoint
     private int y1; // y-coordinate of first endpoint
@@ -41,7 +40,13 @@ public class MyLine {
     public void setMyColor(Color myColor) {
         this.myColor = myColor;
     }
-    
+
+    public int getX1() { return x1; }
+    public int getY1() { return y1; }
+    public int getX2() { return x2; }
+    public int getY2() { return y2; }
+    public Color getMyColor() { return myColor; }
+
     // draw the line in the specified color
     // g is a reference to draw components to paintComponet(g) 
     public void draw(Graphics g) {

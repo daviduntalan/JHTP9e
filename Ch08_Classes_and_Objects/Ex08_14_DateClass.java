@@ -40,9 +40,20 @@ public class Ex08_14_DateClass {
     
 }
 
-@lombok.Setter
-@lombok.Getter
-class DateClass {    
+class DateClass {
+
+    private int month; // 1-12
+    private int day; // 1-31 based on month
+    private int year; // 4 digit year e.i. 1000-9999
+
+    private static final String[] namesOfMonth = { "Not Available",
+            "January", "February", "March", "April", "May", "June", "July",
+            "August", "September", "October", "November", "December"
+    };
+
+    private static final int[] daysPerMonth = { // days in each month
+            0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+    };
     
     /**
      * @param theDayNumberIn represents the day number in year.
@@ -65,20 +76,21 @@ class DateClass {
     }   
 
     public DateClass(int theMonth, int theDay, int theYear) {
-        setDateClass(theMonth, theDay, theYear); 
-    }   
-    
-    @Override // return a Strig of the form month/day/year
-    public String toString() {
-        return String.format("%d/%d/%d", getMonth(), getDay(), getYear());
+
+        setDateClass(theMonth, theDay, theYear);
     }
 
-    private void setDateClass(int theMonth, int theDay, int theYear) {
-        setMonth( checkMonth(theMonth) ); // validate month
-        setDay( checkDay(theDay) ); // validate day        
-        setYear( checkYear(theYear) ); // validate year
-    }   
-    
+    public static String[] getNamesOfMonth() { return namesOfMonth; }
+    public static int[] getDaysPerMonth() { return daysPerMonth; }
+
+    public int getMonth() { return month; }
+    public int getDay() { return day; }
+    public int getYear() { return year; }
+
+    public void setMonth(int month) { this.month = month; }
+    public void setDay(int day) { this.day = day; }
+    public void setYear(int year) { this.year = year; }
+
     private int getIntValueOfMonth(String theMonth) throws IllegalArgumentException {
         int intValueOfMonth = 0;
         for (int i = 0; i < namesOfMonth.length; i++) {
@@ -92,6 +104,12 @@ class DateClass {
             return intValueOfMonth;
         } 
         throw new IllegalArgumentException("month must be incorrect spelling");
+    }
+
+    private void setDateClass(int theMonth, int theDay, int theYear) {
+        setMonth( checkMonth(theMonth) ); // validate month
+        setDay( checkDay(theDay) ); // validate day
+        setYear( checkYear(theYear) ); // validate year
     }
     
     /**
@@ -157,18 +175,10 @@ class DateClass {
     private void incrementYear() {
         int nextYear = checkYear(getYear() + 1);
         setYear(nextYear);
-    }   
-    
-    private static final int[] daysPerMonth = { // days in each month
-        0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 
-    };
- 
-    private static final String[] namesOfMonth = { "Not Available",
-        "January", "February", "March", "April", "May", "June", "July", 
-        "August", "September", "October", "November", "December"
-    };
-    
-    private int month; // 1-12
-    private int day; // 1-31 based on month
-    private int year; // 4 digit year e.i. 1000-9999        
+    }
+
+    @Override // return a String of the form month/day/year
+    public String toString() {
+        return String.format("%d/%d/%d", getMonth(), getDay(), getYear());
+    }
 }

@@ -1,4 +1,5 @@
 package Ch08_Classes_and_Objects;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
@@ -8,6 +9,7 @@ import javax.swing.JPanel;
  * @author David
  */
 public class DrawOvalPanel extends JPanel {
+
     private Random random = new Random();
     private MyOval[] ovals; // array of ovals        
     

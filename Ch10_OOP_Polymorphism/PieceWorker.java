@@ -2,12 +2,6 @@ package Ch10_OOP_Polymorphism;
 
 import Ch08_Classes_and_Objects.Date;
 
-/**
- *
- * @author David
- */
-@lombok.Getter
-@lombok.Setter
 public class PieceWorker extends Employee2 {
 
     private int pieces; // number of pieces produced
@@ -24,6 +18,12 @@ public class PieceWorker extends Employee2 {
         setPieces(piecesProduced);
         setWage(wage);
     }
+
+    public int getPieces() { return pieces; }
+    public double getWage() { return wage; }
+
+    public void setPieces(int pieces) { this.pieces = pieces; }
+    public void setWage(double wage) { this.wage = wage; }
 
     @Override
     public double earnings() {

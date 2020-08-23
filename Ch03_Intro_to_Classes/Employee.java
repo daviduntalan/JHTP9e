@@ -4,9 +4,6 @@ package Ch03_Intro_to_Classes;
  *
  * @author David
  */
-@lombok.Setter
-@lombok.Getter
-@lombok.NoArgsConstructor
 public class Employee {
 
     private String firstName;
@@ -18,6 +15,10 @@ public class Employee {
         setLastName(lastName);
         setMoSalary(salary);
     }
+
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
+    public double getMoSalary() { return moSalary; }
             
     public void setMoSalary(double monthlySalary) {
         if (monthlySalary < 0) return;
@@ -28,6 +29,9 @@ public class Employee {
         double raise = 1.10;
         setMoSalary(getMoSalary() * raise);
     }
+
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
     @Override
     public String toString() {

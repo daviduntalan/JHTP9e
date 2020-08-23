@@ -42,9 +42,8 @@ import Ch08_Classes_and_Objects.Date;
  * @author David
  */
 
-@lombok.Getter
-@lombok.Setter
 public abstract class Employee2 implements Payable {
+
     private String firstName;
     private String lastName;
     private String socialSecurityNumber;
@@ -61,7 +60,17 @@ public abstract class Employee2 implements Payable {
         setLastName(lastName);
         setSocialSecurityNumber(socialSecurityNumber);
         setBirthDate(birthDate);
-    }   
+    }
+
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
+    public String getSocialSecurityNumber() { return socialSecurityNumber; }
+    public Date getBirthDate() { return birthDate; }
+
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setSocialSecurityNumber(String socialSecurityNumber) { this.socialSecurityNumber = socialSecurityNumber; }
+    public void setBirthDate(Date birthDate) { this.birthDate = birthDate; }
 
     @Override
     public String toString() {
@@ -69,7 +78,7 @@ public abstract class Employee2 implements Payable {
                 getFirstName(), getLastName(), getSocialSecurityNumber());
     }        
     
-    // abstract method overriden by concrete subclasses
+    // abstract method overridden by concrete subclasses
     public abstract double earnings();
 
     /*

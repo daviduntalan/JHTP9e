@@ -36,15 +36,14 @@ enum Responders {
     FIRE_DEPARTMENT
 }
 
-@lombok.Getter
-@lombok.Setter
 class Emergency {
+
     String phoneNumber;
     String location;
     String timeReported;
     String nature;
-    Responders responseType;
     String responseStatus;
+    Responders responseType;
 
     public Emergency(String phoneNumber, String location, String timeReported, 
             String nature, Responders responseType, String responseStatus) {
@@ -54,7 +53,21 @@ class Emergency {
         setNature(nature);
         setResponseType(responseType);
         setResponseStatus(responseStatus);
-    }        
+    }
+
+    public String getPhoneNumber() { return phoneNumber; }
+    public String getLocation() { return location; }
+    public String getTimeReported() { return timeReported; }
+    public String getNature() { return nature; }
+    public String getResponseStatus() { return responseStatus; }
+    public Responders getResponseType() { return responseType; }
+
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+    public void setLocation(String location) { this.location = location; }
+    public void setTimeReported(String timeReported) { this.timeReported = timeReported; }
+    public void setNature(String nature) { this.nature = nature; }
+    public void setResponseType(Responders responseType) { this.responseType = responseType; }
+    public void setResponseStatus(String responseStatus) { this.responseStatus = responseStatus; }
     
     public void response() {
         System.out.println(this);
@@ -80,7 +93,7 @@ class Enhanced911 extends Emergency {
         super(phoneNumber, location, timeReported, nature, responseType, responseStatus);                        
     }
     
-    public void reponse() {
+    public void response() {
         String address = getCallersPhysicalAddress();
         directTheCallToNearestPSAP(getPhoneNumber(), address);
     }
@@ -100,20 +113,21 @@ class Enhanced911 extends Emergency {
     }    
 }
 
-@lombok.Getter
-@lombok.Setter
-final class WirelessEhanced911 extends Enhanced911 {
+final class WirelessEnhanced911 extends Enhanced911 {
 
     String wirelessPhone;
     
-    public WirelessEhanced911(String phoneNumber, String location, 
-            String timeReported, String nature, Responders responseType, 
-            String responseStatus, String wirelessPhone) {
+    public WirelessEnhanced911(String phoneNumber, String location,
+                               String timeReported, String nature, Responders responseType,
+                               String responseStatus, String wirelessPhone) {
         super(phoneNumber, location, timeReported, nature, responseType, responseStatus);
         setWirelessPhone(wirelessPhone);
     }
 
-    public void reponse() {
+    public String getWirelessPhone() { return wirelessPhone; }
+    public void setWirelessPhone(String wirelessPhone) { this.wirelessPhone = wirelessPhone; }
+
+    public void response() {
         directTheCallToNearestPSAP(getPhoneNumber(), getLocation());
         String location = fetchCellSiteLocation(getWirelessPhone());
         System.out.printf("Cell phone: %s\n", getWirelessPhone());
@@ -127,6 +141,7 @@ final class WirelessEhanced911 extends Enhanced911 {
             return "Smart at Makati";
         }
     }
+
 }
 
 public class Ex08_18_EmergencyResponseClass {
@@ -146,14 +161,14 @@ public class Ex08_18_EmergencyResponseClass {
         System.out.println();
         
         new Enhanced911(phoneNumber, location, timeReported, nature, 
-                responseType, responseStatus).reponse();
+                responseType, responseStatus).response();
         
         System.out.println();
         
         String wirelessPhone = "09173334444";
-        new WirelessEhanced911(phoneNumber, location, timeReported, 
+        new WirelessEnhanced911(phoneNumber, location, timeReported,
                 nature, responseType, responseStatus, 
-                wirelessPhone).reponse();                
+                wirelessPhone).response();
     }
-    
+
 }

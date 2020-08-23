@@ -1,9 +1,19 @@
 package Ch08_Classes_and_Objects;
 
-@lombok.Getter
-@lombok.Setter
-public class DateAndTime {        
-    
+public class DateAndTime {
+
+    private int year; // 4 digit year e.i. 1000-9999
+    private int month; // 1-12
+    private int day; // 1-31 based on month
+
+    private int hour; // 0 - 23
+    private int minute; // 0 - 59
+    private int second; // 0 - 59
+
+    private static final int[] daysPerMonth = { // days in each month
+            0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+    };
+
     /**
      * Default: January 1, 1000, 00:00:00
      */
@@ -47,42 +57,19 @@ public class DateAndTime {
         setTime(HH, MM, SS); // default: January 1, 1000        
         setDate(theYear, theMonth, theDay); // override the default date
     }
-    
-    /**
-     * increments the time stored in a DateAndTime object by one second.
-     * @throws InterruptedException 
-     */
-    public void tick() throws InterruptedException {
-        if (getSecond() + 1 < 60) {
-            setSecond(getSecond() + 1);
-        } else {
-            incrementMinute();
-            setSecond(0);
-        }
-        // Thread.sleep(1000);
-    }
-    
-    // convert to String in universal-time format (HH:MM:SS)
-    public String toUniversalString() {
-        return String.format("%s %02d:%02d:%02d", 
-                toStringDate(), hour, minute, second);
-    }
-    
-    @Override // convert to String in standard-time format (H:MM:SS AM or PM)
-    public String toString() {
-        return String.format("%s %2d:%02d:%02d %s", toStringDate(),                 
-            ((hour == 0 || hour == 12) ? 12 : hour % 12),
-            minute, second, ((hour < 12) ? "AM" : "PM"));
-    }
-    
-    // When implementing a method of a class, use the class’s set and get methods 
-    // to access theclass’s private data. This simplifies code maintenance and 
-    // reduces the likelihood of errors. NOTE: been replaced by lombok annotation       
-    
-    private void setTime(int h, int m, int s) {
-        setDate(1000, 1, 1); // default: January 1, 1000
-        setHour(h); setMinute(m); setSecond(s);
-    }
+
+    public int getYear() { return year; }
+    public int getMonth() { return month; }
+    public int getDay() { return day; }
+    public int getHour() { return hour; }
+    public int getMinute() { return minute; }
+    public int getSecond() { return second; }
+
+    public static int[] getDaysPerMonth() { return daysPerMonth; }
+
+    public void setYear(int year) { this.year = year; }
+    public void setMonth(int month) { this.month = month; }
+    public void setDay(int day) { this.day = day; }
 
     private void setHour(int h) {
         if (h >= 0 && h < 24) hour = h;
@@ -97,8 +84,17 @@ public class DateAndTime {
     private void setSecond(int s) {
         if (s >= 0 && s < 60) second = s;
         else throw new IllegalArgumentException("second must be 0-59");
-    }    
+    }
+
+    // When implementing a method of a class, use the class’s set and get methods 
+    // to access the class’s private data. This simplifies code maintenance and
+    // reduces the likelihood of errors. NOTE: been replaced by lombok annotation       
     
+    private void setTime(int h, int m, int s) {
+        setDate(1000, 1, 1); // default: January 1, 1000
+        setHour(h); setMinute(m); setSecond(s);
+    }
+
     /**
      * Date must be in chronological (e.i, sequential or in order of
      * Year, Month before Day) as day is dependent on month and year.
@@ -110,7 +106,21 @@ public class DateAndTime {
         setYear( checkYear(YYYY) ); // validate year
         setMonth( checkMonth(MM) ); // validate month
         setDay( checkDay(DD) ); // validate day
-    }        
+    }
+
+    /**
+     * increments the time stored in a DateAndTime object by one second.
+     * @throws InterruptedException
+     */
+    public void tick() throws InterruptedException {
+        if (getSecond() + 1 < 60) {
+            setSecond(getSecond() + 1);
+        } else {
+            incrementMinute();
+            setSecond(0);
+        }
+        // Thread.sleep(1000);
+    }
     
     private void incrementMinute() throws InterruptedException {
         if (getMinute() + 1 < 60) {
@@ -131,7 +141,37 @@ public class DateAndTime {
             setMinute(0);
             setHour(0);
         }
-    }        
+    }
+
+    private void nextDay() throws InterruptedException {
+        int nextDay = getDay() + 1;
+        int add1Day = nextDay == 29 && isLeapYear() ? 1 : 0;
+        if (nextDay <= daysPerMonth[ getMonth() ] + add1Day) {
+            nextDay = checkDay(nextDay); // double check
+            setDay(nextDay);
+        } else {
+            incrementMonth();
+            setDay(1); // reset to day 1
+        }
+        Thread.sleep(10);
+    }
+
+    private void incrementMonth() {
+        int nextMonth = getMonth() + 1;
+        if (nextMonth <= 12) {
+            nextMonth = checkMonth(nextMonth); // double check
+            setMonth(nextMonth);
+        } else {
+            incrementYear();
+            setMonth(1);
+            setDay(1);
+        }
+    }
+
+    private void incrementYear() {
+        int nextYear = checkYear(getYear() + 1);
+        setYear(nextYear);
+    }
     
     /**
      * @param testYear
@@ -153,66 +193,38 @@ public class DateAndTime {
     }
 
     private int checkDay(int testDay) {
-        if (testDay > 0 && testDay <= daysPerMonth[ getMonth() ]) 
+        if (testDay > 0 && testDay <= daysPerMonth[ getMonth() ])
             return testDay;
-            
+
         // check for leap year
         if (testDay == 29 && isLeapYear())
             return testDay;
-                
+
         throw new IllegalArgumentException(
                 "day out-of-range for the specified month and year");
     }
 
     public boolean isLeapYear() {
+
         return getMonth() == 2 && year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
     }
     
-    // return a Strig of the form month/day/year
+    // return a String of the form month/day/year
     public String toStringDate() {        
+
         return String.format("%d/%d/%d", getMonth(), getDay(), getYear());
     }
 
-    private void nextDay() throws InterruptedException {
-        int nextDay = getDay() + 1;
-        int add1Day = nextDay == 29 && isLeapYear() ? 1 : 0;
-        if (nextDay <= daysPerMonth[ getMonth() ] + add1Day) {
-            nextDay = checkDay(nextDay); // double check
-            setDay(nextDay);
-        } else {
-            incrementMonth();
-            setDay(1); // reset to day 1
-        }
-        Thread.sleep(10);
+    // convert to String in universal-time format (HH:MM:SS)
+    public String toUniversalString() {
+        return String.format("%s %02d:%02d:%02d",
+                toStringDate(), hour, minute, second);
     }
-    
-    private void incrementMonth() {
-        int nextMonth = getMonth() + 1;
-        if (nextMonth <= 12) {
-            nextMonth = checkMonth(nextMonth); // double check
-            setMonth(nextMonth);
-        } else {
-            incrementYear();
-            setMonth(1);
-            setDay(1);
-        }
+
+    @Override // convert to String in standard-time format (H:MM:SS AM or PM)
+    public String toString() {
+        return String.format("%s %2d:%02d:%02d %s", toStringDate(),
+                ((hour == 0 || hour == 12) ? 12 : hour % 12),
+                minute, second, ((hour < 12) ? "AM" : "PM"));
     }
-    
-    private void incrementYear() {
-        int nextYear = checkYear(getYear() + 1);
-        setYear(nextYear);
-    }    
-    
-    private static final int[] daysPerMonth = { // days in each month
-        0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 
-    };
-    
-    private int year; // 4 digit year e.i. 1000-9999
-    private int month; // 1-12
-    private int day; // 1-31 based on month
-    
-    private int hour; // 0 - 23
-    private int minute; // 0 - 59
-    private int second; // 0 - 59
-    
 }

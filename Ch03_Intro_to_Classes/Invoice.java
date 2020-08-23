@@ -1,12 +1,4 @@
 package Ch03_Intro_to_Classes;
-
-/**
- *
- * @author David
- */
-@lombok.Setter
-@lombok.Getter
-@lombok.NoArgsConstructor
 public class Invoice {
 
     private String partNumber;
@@ -14,6 +6,7 @@ public class Invoice {
     private int itemQuantity;
     private double itemPrice;
 
+    public Invoice() { }
     public Invoice(String partNumber, String partDescription, int itemQuantity, double itemPrice) {
         setPartNumber(partNumber);
         setPartDescription(partDescription);
@@ -26,6 +19,16 @@ public class Invoice {
         if (getItemPrice() < 0) return 0.0;
         return getItemQuantity() * getItemPrice();
     }
+
+    public String getPartNumber() { return partNumber; }
+    public String getPartDescription() { return partDescription; }
+    public int getItemQuantity() { return itemQuantity; }
+    public double getItemPrice() { return itemPrice; }
+
+    public void setPartNumber(String partNumber) { this.partNumber = partNumber; }
+    public void setPartDescription(String partDescription) { this.partDescription = partDescription; }
+    public void setItemQuantity(int itemQuantity) { this.itemQuantity = itemQuantity; }
+    public void setItemPrice(double itemPrice) { this.itemPrice = itemPrice; }
 
     @Override
     public String toString() {

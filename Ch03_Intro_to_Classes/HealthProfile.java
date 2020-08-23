@@ -13,9 +13,6 @@ package Ch03_Intro_to_Classes;
  *
  * @author David
  */
-@lombok.NoArgsConstructor
-@lombok.Setter
-@lombok.Getter
 public class HealthProfile extends HeartRates {
 
     /* found from base class
@@ -26,6 +23,7 @@ public class HealthProfile extends HeartRates {
     private int height; // in inches
     private int weight; // in pounds
 
+    public HealthProfile() {}
     public HealthProfile(String firstName, String lastName, String gender, Date dateOfBirth, int height, int weight) {
         setFirstName(firstName);
         setLastName(lastName);
@@ -35,18 +33,10 @@ public class HealthProfile extends HeartRates {
         setWeight(weight);
     }
 
-    public int getAge() {
-        return 2020 - getDateOfBirth().getYear();
-    }
+    public int getAge() { return 2020 - getDateOfBirth().getYear(); }
+    public int getMaximumHeartRate() { return super.maximumHeartRate(getAge()); }
+    public double getTargetHeartRate() { return super.targetHeartRate(getAge()); }
 
-    public int getMaximumHeartRate() {
-        return super.maximumHeartRate(getAge());
-    }
-
-    public double getTargetHeartRate() {
-        return super.targetHeartRate(getAge());
-    }
-    
     public double getBMI() {
         double BMI = (getWeight() * 703)  / (getHeight() * getHeight());
         
@@ -59,7 +49,14 @@ public class HealthProfile extends HeartRates {
         
         return BMI;
     }
-            
+
+    public String getGender() { return gender; }
+    public int getHeight() { return height; }
+    public int getWeight() { return weight; }
+
+    public void setGender(String gender) { this.gender = gender; }
+    public void setHeight(int height) { this.height = height; }
+    public void setWeight(int weight) { this.weight = weight; }
 
     @Override
     public String toString() {

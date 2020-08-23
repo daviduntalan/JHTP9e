@@ -2,10 +2,7 @@ package Ch08_Classes_and_Objects;
 
 /**
  * Fig. 8.7: Date class declaration.
- * @author David
  */
-@lombok.Setter
-@lombok.Getter
 public class Date {
     private int month; // 1-12
     private int day; // 1-31 based on month
@@ -21,7 +18,7 @@ public class Date {
         year = checkYear(theYear); // validate year
         day = checkDay(theDay); // validate day
         
-        // ouput the "this" refrence as a String.
+        // output the "this" reference as a String.
         // Since "this" is a reference to the current Date object,
         // the object's toString() method is called implicitly to 
         // obtain the object's String representation.
@@ -47,6 +44,14 @@ public class Date {
             throw new IllegalArgumentException("month must be 1-12");
     }
 
+    public int getMonth() { return month; }
+    public int getDay() { return day; }
+    public int getYear() { return year; }
+
+    public void setMonth(int month) { this.month = month; }
+    public void setDay(int day) { this.day = day; }
+    public void setYear(int year) { this.year = year; }
+
     private int checkDay(int testDay) {
         if (testDay > 0 && testDay <= daysPerMonth[ getMonth() ]) 
             return testDay;
@@ -60,11 +65,13 @@ public class Date {
     }
 
     public boolean isLeapYear() {
+
         return getMonth() == 2 && year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
     }
     
-    @Override // return a Strig of the form month/day/year
+    @Override // return a String of the form month/day/year
     public String toString() {
+
         return String.format("%d/%d/%d", getMonth(), getDay(), getYear());
     }
 

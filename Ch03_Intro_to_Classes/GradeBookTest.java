@@ -1,12 +1,10 @@
-// package Ch03_Intro_to_Classes;
+package Ch03_Intro_to_Classes;
 
 import java.util.Scanner;
 
 /**
  * Create GradeBook object and pass a String to 
  * its displayMessage method.
- *
- * @author David
  */
 public class GradeBookTest {
 
@@ -15,7 +13,7 @@ public class GradeBookTest {
         GradeBook gradeBook1 = new GradeBook("CS101 Intro to Java Programming");
         GradeBook gradeBook2 = new GradeBook("CS102 Data Strctures in Java");
         
-        // disiplay initial value of courseName
+        // display initial value of courseName
         System.out.printf("Initial course name is %s\n\n", 
                 gradeBook1.getCourseName());
 

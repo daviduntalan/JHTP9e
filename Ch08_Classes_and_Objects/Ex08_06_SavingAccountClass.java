@@ -48,35 +48,29 @@ public class Ex08_06_SavingAccountClass {
     
 } // end of class
 
-@lombok.Getter
-@lombok.Setter
 class SavingsAccount {
     
     private static double annualInterestRate;
     private double savingsBalance; // deposit goes here.
 
-    public static double getAnnualInterestRate() {
-        return annualInterestRate;
-    }
+    public SavingsAccount(double newBalance) { setSavingsBalance(newBalance); }
 
-    public static void setAnnualInterestRate(double interestRate) {
-        SavingsAccount.annualInterestRate = interestRate;
-    }        
+    public static double getAnnualInterestRate() { return annualInterestRate; }
+    public static void setAnnualInterestRate(double interestRate) { SavingsAccount.annualInterestRate = interestRate; }
 
-    public SavingsAccount(double newBalance) {
-        setSavingsBalance(newBalance);
-    }
-    
+    public double getSavingsBalance() { return savingsBalance; }
+    public void setSavingsBalance(double savingsBalance) { this.savingsBalance = savingsBalance; }
+    public static void modifyInterestRate(double newRate) { setAnnualInterestRate(newRate); }
+
     public void calculateMonthlyInterest() {
-        setSavingsBalance(getSavingsBalance() + getSavingsBalance() * annualInterestRate / 12.0);        
-    }
-    
-    public static void modifyInterestRate(double newRate) {
-        setAnnualInterestRate(newRate);
+        setSavingsBalance(getSavingsBalance()
+                * annualInterestRate / 12.0
+                + getSavingsBalance()
+        );
     }
 
     @Override
     public String toString() {
         return String.format("SavingsAccount's balance: %.2f", getSavingsBalance());
-    }        
+    }
 }

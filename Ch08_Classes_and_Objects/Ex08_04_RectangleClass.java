@@ -4,8 +4,6 @@ package Ch08_Classes_and_Objects;
  * Crate a class Rectangle with attribute length and width, each of which
  * defaults to 1. Provide methods that calculate the rectangle's perimeter and
  * area.
- *
- * @author David
  */
 public class Ex08_04_RectangleClass {
 
@@ -20,7 +18,6 @@ public class Ex08_04_RectangleClass {
     }
 }
 
-@lombok.Getter
 final class Rectangle {
 
     private float length = 1;
@@ -29,7 +26,17 @@ final class Rectangle {
     public Rectangle(float length, float width) {
         setLength(length);
         setWidth(width);
-    }   
+    }
+
+    public float getPerimeter() {
+        return length * 2 + width * 2;
+    }
+    public float getArea() {
+        return length * width;
+    }
+
+    public float getLength() { return length; }
+    public float getWidth() { return width; }
 
     public void setLength(float length) {
         if (length > 0.0 && length < 20.0) {
@@ -49,14 +56,6 @@ final class Rectangle {
         }
     }
 
-    public float getPerimeter() {
-        return length * 2 + width * 2;
-    }
-
-    public float getArea() {
-        return length * width;
-    }
-
     @Override
     public String toString() {
         return String.format( "Rectangle attributes:\n"
@@ -67,5 +66,5 @@ final class Rectangle {
             getLength(), getWidth(),
             getPerimeter(), getArea()
         );
-    }        
+    }
 }

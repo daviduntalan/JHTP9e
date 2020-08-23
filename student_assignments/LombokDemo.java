@@ -2,7 +2,12 @@ package student_assignments;
 
 import java.util.ArrayList;
 
-@lombok.Data
+/**
+ * To Enable Lombok.
+ * 1. https://projectlombok.org/setup/netbeans
+ * 2. https://netbeans.org/kb/73/java/annotations-lombok.html
+ */
+
 class PhoneBook {
 
     private String name;
@@ -23,24 +28,21 @@ class PhoneBook {
         return this;
     }
 
+    public String getName() { return name; }
+    public String getContact() { return contact; }
+
+    public void setName(String name) { this.name = name; }
+    public void setContact(String contact) { this.contact = contact; }
 }
 
-/**
- * To Enable Lombok.
- * 1. https://projectlombok.org/setup/netbeans 
- * 2. https://netbeans.org/kb/73/java/annotations-lombok.html
- *
- * @author David
- */
 public class LombokDemo {
 
     public static void main(String[] args) {
-        // TODO code application logic here
+
         ArrayList<PhoneBook> phoneBook = new ArrayList<>();
         PhoneBook pb = new PhoneBook("David, Jr.", "09274141835");
         pb.setName("Lady Lou Recla");
-        System.out.printf("Name: %s\nContact: %s\n", 
-                pb.getName(), pb.getContact());
+        System.out.printf("Name: %s\nContact: %s\n", pb.getName(), pb.getContact());
         pb.getMethod1().getMethod2().getMethod2().getMethod1();
     }
 

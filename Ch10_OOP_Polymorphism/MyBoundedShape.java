@@ -2,10 +2,6 @@ package Ch10_OOP_Polymorphism;
 
 import java.awt.Color;
 
-/**
- *
- * @author David
- */
 public abstract class MyBoundedShape extends MyShape {
 
     private boolean isFilled; // flag to determine the shape is filled
@@ -22,7 +18,6 @@ public abstract class MyBoundedShape extends MyShape {
     public final boolean getIsFilled() {
         return isFilled;
     }
-
     public final void setIsFilled(boolean filled) {
         isFilled = filled;
     }

@@ -3,11 +3,7 @@ package Ch08_Classes_and_Objects;
 /**
  * Fig. 8.12: Static variable used to maintain a count of 
  * the number of Employee objects in memory.
- *
- * @author David
  */
-@lombok.Getter
-@lombok.Setter
 public class Employee_Fig8_12 {
 
     private String firstName;
@@ -27,7 +23,7 @@ public class Employee_Fig8_12 {
         // wonder why we're able to use operators + and += to concatenate
         // String objects. String-concatenation operations actually result
         // in a NEW String object containing the concatenated values.
-        // The orginal String objects are not modified.
+        // The original String objects are not modified.
         setFirstName(first); // holds only the reference to original object
         setLastName(last); // holds only the reference to original object
         
@@ -42,16 +38,25 @@ public class Employee_Fig8_12 {
         setHireDate(dateOfHire);                
         setCount();
     }
-    
+
+    // static method to get static count value
+    public static int getCount() {
+        return count;
+    }
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
+    public Date getBirthDate() { return birthDate; }
+    public Date getHireDate() { return hireDate; }
+
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setBirthDate(Date birthDate) { this.birthDate = birthDate; }
+    public void setHireDate(Date hireDate) { this.hireDate = hireDate; }
+
     private void setCount() {
         ++count; // increment static count of employees
         System.out.printf("Employee constructor: %s %s; count = %d\n",
                 getFirstName(), getLastName(), getCount());
-    }
-    
-    // static method to get static count value
-    public static int getCount() { 
-        return count;
     }
 
     @Override // convert Employee to String format
@@ -60,4 +65,5 @@ public class Employee_Fig8_12 {
                 getLastName(), getFirstName(), 
                 getHireDate(), getBirthDate());
     }
+
 }

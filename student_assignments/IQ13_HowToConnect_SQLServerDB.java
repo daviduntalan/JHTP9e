@@ -101,14 +101,22 @@ public class IQ13_HowToConnect_SQLServerDB {
     } // end main
 }
 
-@lombok.Setter
-@lombok.Getter
-// @lombok.ToString
 class Grades {
+
     String id;
     String name;
     String subject;
     String grade;
+
+    public String getId() { return id; }
+    public String getName() { return name; }
+    public String getSubject() { return subject; }
+    public String getGrade() { return grade; }
+
+    public void setId(String id) { this.id = id; }
+    public void setName(String name) { this.name = name; }
+    public void setSubject(String subject) { this.subject = subject; }
+    public void setGrade(String grade) { this.grade = grade; }
 
     @Override
     public String toString() {

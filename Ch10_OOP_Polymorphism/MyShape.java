@@ -9,8 +9,6 @@ import java.awt.Graphics;
  * @author David
  */
 
-@lombok.Getter
-// @lombok.Setter
 public abstract class MyShape {
         
     private int x1; /* coordinates */
@@ -29,13 +27,19 @@ public abstract class MyShape {
         setX1(x1); setX2(x2);
         setY1(y1); setY2(y2);
         setColor(color);
-    }    
+    }
+
+    public int getX1() { return x1; }
+    public int getY1() { return y1; }
+    public int getX2() { return x2; }
+    public int getY2() { return y2; }
+    public Color getColor() { return color; }
 
     private void setX1(int x) { x1 = (x >= 0) ? x : 0; }
     private void setY1(int y) { y1 = (y >= 0) ? y : 0; }
     private void setX2(int x) { x2 = (x >= 0) ? x : 0; }
     private void setY2(int y) { y2 = (y >= 0) ? y : 0; }
     private void setColor(Color color) { this.color = color; }
-    
+
     public abstract void draw(Graphics g);
 }
