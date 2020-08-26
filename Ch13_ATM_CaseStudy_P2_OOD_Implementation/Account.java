@@ -8,8 +8,8 @@ public class Account {
 
     private int accountNumber;
     private int pin;
-    private double availableBalance;
-    private double totalBalance;
+    private double availableBalance; /* tracks the amount of money that a user can withdraw from the account. */
+    private double totalBalance; /* refers to the total amount of money that the user has "on deposit" (i.e., the amount of money available, plus the amount waiting to be verified or cleared). */
 
     public boolean validatePIN() {
         return false;

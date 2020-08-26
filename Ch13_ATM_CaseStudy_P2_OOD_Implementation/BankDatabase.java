@@ -6,7 +6,7 @@ package Ch13_ATM_CaseStudy_P2_OOD_Implementation;
  */
 public class BankDatabase {
 
-    public boolean authenticaeUser() {
+    public boolean authenticateUser() {
         return false;
     }
 
