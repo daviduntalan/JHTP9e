@@ -69,8 +69,8 @@ class Bird extends Animal {
 /*
 Implementing for Extensibility
 
-With polymorphism, we cn design and implement systems that are easily
-extensible--new classes can be added with little or no modifiction to 
+With polymorphism, we can design and implement systems that are easily
+extensible--new classes can be added with little or no modification to
 the general portions of the programs, as long as the new classes are
 part of the inheritance hierarchy that the program processes generically.
 

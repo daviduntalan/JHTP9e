@@ -21,7 +21,7 @@ public class MyOval extends MyBoundedShape {
     // draw the line in the specified color
     // g is a reference to Graphics object on the JPanel so that
     // we can draw components to it and displayed by system by
-    // a call to paintComponet(g) to refresh the drawing on the screen - Just my own opinion.
+    // a call to paintComponent(g) to refresh the drawing on the screen - Just my own opinion.
     @Override
     public void draw(Graphics g) {
         g.setColor(getColor());
@@ -33,4 +33,4 @@ public class MyOval extends MyBoundedShape {
                     getWidth(), getHeight());
         }
     }
-}
+} // end of class MyOval

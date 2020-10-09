@@ -3,11 +3,15 @@ package student_assignments;
 import java.util.ArrayList;
 
 /**
- * To Enable Lombok.
+ * To Enable Lombok using IntelliJ-IDEA
+ * 1. Go to File->Settings->Plugins->Marketplace search and install Lombok
+ * 2. Go to File->Settings->Lombok plugin
+ * To Enable Lombok using NetBeans IDE.
  * 1. https://projectlombok.org/setup/netbeans
  * 2. https://netbeans.org/kb/73/java/annotations-lombok.html
  */
-
+@lombok.Getter
+@lombok.Setter
 class PhoneBook {
 
     private String name;
@@ -27,12 +31,13 @@ class PhoneBook {
         System.out.println("method chain 2...");
         return this;
     }
-
+    /*
     public String getName() { return name; }
     public String getContact() { return contact; }
 
     public void setName(String name) { this.name = name; }
     public void setContact(String contact) { this.contact = contact; }
+    */
 }
 
 public class LombokDemo {

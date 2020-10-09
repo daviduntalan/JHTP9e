@@ -19,9 +19,10 @@ public class MyLine extends MyShape {
     }
 
     // draw the line in the specified color
-    // g is a reference to draw components to paintComponet(g) 
+    // g is a reference to draw components to paintComponent(g)
     public void draw(Graphics g) {
         g.setColor(getColor());
         g.drawLine(getX1(), getY1(), getX2(), getY2());
     }
-}
+
+} // end of class MyLine

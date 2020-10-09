@@ -22,9 +22,9 @@ public abstract class MyBoundedShape extends MyShape {
         isFilled = filled;
     }
     
-    public int getUpperLeftX() { return getX1(); }
-    public int getUpperLeftY() { return getY1(); }
-    public int getWidth() { return getX2() - getX1(); }
-    public int getHeight() { return getY2() - getY1(); }
+    public int getUpperLeftX() { return Math.min(getX1(), getX2()); }
+    public int getUpperLeftY() { return Math.min(getY1(), getY2()); }
+    public int getWidth() { return Math.abs(getX2() - getX1()); } /* this fn turns -n to +n */
+    public int getHeight() { return Math.abs(getY2() - getY1()); } /* so you could draw, from L-Right to U-Left */
         
 }

@@ -11,7 +11,7 @@ public class DrawPanel extends JPanel {
     private Random random = new Random();
     private MyLine[] lines; // array of lines
     
-    // constructor, ccreates a panel with random shapes
+    // constructor, creates a panel with random shapes
     public DrawPanel() {
         setBackground(Color.WHITE);
         lines = new MyLine[5 + random.nextInt(5)];

@@ -35,11 +35,11 @@ public abstract class MyShape {
     public int getY2() { return y2; }
     public Color getColor() { return color; }
 
-    private void setX1(int x) { x1 = (x >= 0) ? x : 0; }
-    private void setY1(int y) { y1 = (y >= 0) ? y : 0; }
-    private void setX2(int x) { x2 = (x >= 0) ? x : 0; }
-    private void setY2(int y) { y2 = (y >= 0) ? y : 0; }
-    private void setColor(Color color) { this.color = color; }
+    public void setX1(int x) { x1 = (x >= 0) ? x : 0; }
+    public void setY1(int y) { y1 = (y >= 0) ? y : 0; }
+    public void setX2(int x) { x2 = (x >= 0) ? x : 0; }
+    public void setY2(int y) { y2 = (y >= 0) ? y : 0; }
+    public void setColor(Color color) { this.color = color; }
 
     public abstract void draw(Graphics g);
 }

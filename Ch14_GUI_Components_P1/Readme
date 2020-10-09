@@ -1,0 +1,15 @@
+Date: 24-Sep-2020
+
+made changes to the following directories:
+
+C:\Program Files\AdoptOpenJDK\jdk-11.0.8.10-hotspot\lib
+C:\Program Files\Java\jre1.8.0_261\lib
+
+i added the file: "swing.properties" for the purpose of Java's New Nimbus Look-and-Feel
+
+...
+
+If you prefer to select Nimbus on an application-by-application basis, place the following
+command-line argument after the java command and before the application’s
+name when you run the application:
+-Dswing.defaultlaf=com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel

@@ -33,7 +33,7 @@ public class ClassAttributeTest {
     public static void main(String[] args) {
 
         ClassAttribute attributeObj = new ClassAttribute();
-        attributeObj.setHeight(12*5+7);
+        attributeObj.setHeight(12 * 5 + 7);
         attributeObj.setWeight(112);
         System.out.println(attributeObj);
     }

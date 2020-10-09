@@ -1,0 +1,12 @@
+package Ch15_Graphics_Java2D;
+
+import javax.swing.*;
+/** Fig. 15.8: Choosing colors with JColorChooser */
+public class ShowColors2 {
+
+    public static void main(String[] args) {
+
+        ShowColors2JFrame app = new ShowColors2JFrame();
+        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}

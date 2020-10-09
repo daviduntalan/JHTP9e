@@ -14,7 +14,7 @@ public class DrawSpiralSquare extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int s = 0, len = 40;
+        int s, len = 40;
 
         int cx = getWidth() / 2;
         int cy = getHeight() / 2;

@@ -13,19 +13,23 @@ public class CronJob {
 
         Timer t = new Timer();
         MyTask myTask = new MyTask();
-        t.scheduleAtFixedRate(myTask, 0, 5000);        
+        t.scheduleAtFixedRate(myTask, 0, 3000);
     }
 
 }
 
 class MyTask extends TimerTask {
 
+
+    private int counter;
+
     public MyTask() {
+        counter = 0;
     }
 
     @Override
     public void run() {
-        System.out.println("Execute your SQL or "
-                + "SMS API here accordingly! See you after 5s.");
+        System.out.printf("%d. Execute your SQL or "
+                + "SMS API here accordingly! See you after 3s.\n", ++counter);
     }
 }
