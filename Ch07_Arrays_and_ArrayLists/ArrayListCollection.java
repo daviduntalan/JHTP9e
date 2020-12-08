@@ -8,9 +8,6 @@ import java.util.ArrayList;
  */
 public class ArrayListCollection {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         // create a new ArrayList of Strings with an initial capacity of 10
         ArrayList<String> items = new ArrayList<>();
@@ -20,8 +17,8 @@ public class ArrayListCollection {
         
         System.out.print("Display list contents w/ counter-controlled loop:");
         // display the colors in the list
-        for (int i = 0; i < items.size(); i++) {
-            System.out.printf(" %s", items.get(i));
+        for (int index = 0; index < items.size(); ++index) {
+            System.out.printf(" %s", items.get(index).toUpperCase());
         }
         // display colors using foreach in the display method
         display(items, "\nDisplay list contents w/ enhanced for statement:");
@@ -31,14 +28,15 @@ public class ArrayListCollection {
         display(items, "List with two new elements:");
         
         items.remove("yellow"); // remove the first yellow
-        display(items, "Remove the first instance of yellow:");
+        display(items, "Remove the 1st instance of yellow:");
         
         items.remove(1); // remove item at index 1
-        display(items, "Remove second list element (green):");
+        display(items, "Remove 2nd list element (green):");
         
         // check if a value is in the list
-        System.out.printf("\"red\" is %sin the list\n", 
-                items.contains("red") ? "" : "not ");
+        String searchKey = "red";
+        System.out.printf("%s is %sin the list\n", searchKey.toUpperCase(),
+                items.contains( searchKey ) ? "" : "not ");
         
         // display number of elements in the list
         System.out.printf("Size: %d - number of elements in the list\n", items.size());
@@ -47,7 +45,7 @@ public class ArrayListCollection {
     private static void display(ArrayList<String> items, String header) {
         System.out.print( header );
         for (String item : items) {
-            System.out.printf(" %s", item);
+            System.out.printf(" %s", item.toUpperCase());
         }
         System.out.println();
     }

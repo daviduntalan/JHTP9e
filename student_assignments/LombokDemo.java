@@ -10,8 +10,8 @@ import java.util.ArrayList;
  * 1. https://projectlombok.org/setup/netbeans
  * 2. https://netbeans.org/kb/73/java/annotations-lombok.html
  */
-@lombok.Getter
-@lombok.Setter
+// @lombok.Getter
+// @lombok.Setter
 class PhoneBook {
 
     private String name;
@@ -31,13 +31,13 @@ class PhoneBook {
         System.out.println("method chain 2...");
         return this;
     }
-    /*
+
     public String getName() { return name; }
     public String getContact() { return contact; }
 
     public void setName(String name) { this.name = name; }
     public void setContact(String contact) { this.contact = contact; }
-    */
+
 }
 
 public class LombokDemo {

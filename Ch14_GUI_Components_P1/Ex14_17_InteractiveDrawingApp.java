@@ -1,6 +1,14 @@
 package Ch14_GUI_Components_P1;
 
+import Ch10_OOP_Polymorphism.MyLine;
+import Ch10_OOP_Polymorphism.MyOval;
+import Ch10_OOP_Polymorphism.MyRectangle;
+import Ch10_OOP_Polymorphism.MyShape;
+
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
 
 /**
  * Ex 14.17 (Interactive Drawing Application) In this exercise, you’ll implement a GUI application
@@ -72,6 +80,236 @@ import javax.swing.*;
  * to DrawPanel’s constructor. Finally, create a test class that initializes and displays the DrawFrame to
  * execute the application.
  */
+
+/**
+ * Enhanced Fig. 8.19: Program that uses class MyShape to draw selected shape(s).
+ * @author David
+ */
+class DrawPanel extends JPanel {
+
+    private MyShape[] shapes; // will store all the shapes the user draws
+    private int shapeCount, tempCount; // counts the number of shapes in the array
+    private int shapeType; // determines the type of shape to draw
+    private MyShape currentShape; // represents the current shape the user is drawing
+    private Color currentColor; // represents the current drawing color
+    private boolean filledShape; // determines whether to draw a filled shape
+    private JLabel statusLabel; // represents the status bar. will display the coordinates of the current mouse position.
+
+    private Random random = new Random();
+    private MyLine[] lines; // array of lines
+
+    // constructor, creates a panel with selected shapes
+    public DrawPanel(JLabel statusLabel) {
+
+        this.statusLabel = statusLabel;
+        shapes = new MyShape[100];
+        shapeCount = 0;
+        shapeType = 0; // represent a MyLine
+        currentShape = null;
+        currentColor = Color.BLACK;
+        setBackground(Color.WHITE);
+
+        MyMouseHandler myMouseHandler = new MyMouseHandler();
+        addMouseListener(myMouseHandler);
+        addMouseMotionListener(myMouseHandler);
+    }
+
+    public void setShapeType(int shapeType) {
+        this.shapeType = shapeType;
+    }
+
+    public void setCurrentColor(Color currentColor) {
+        this.currentColor = currentColor;
+    }
+
+    public void setFilledShape(boolean filledShape) {
+        this.filledShape = filledShape;
+    }
+
+    // clear the last shape drawn
+    public void clearLastShape() {
+
+        if (shapeCount > 0) {
+            shapeCount--;
+        }
+        repaint(); // to refresh the drawing on the DrawPanel
+    }
+
+    // remove all the shapes in the current drawing
+    public void clearDrawing() {
+        shapeCount = 0;
+        repaint(); // to refresh the drawing on the DrawPanel
+    }
+
+    @Override // for each shape array, draw the individual shapes
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        for (int i = 0; i < shapeCount; ++i) {
+            shapes[i].draw(g); // call appropriate method of shape
+        }
+    }
+
+    /**
+     * inner class that both extends MouseAdapter and implements MouseMotionListener
+     * to handle all mouse events. */
+    private class MyMouseHandler extends MouseAdapter implements MouseMotionListener {
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+            // if (currentShape != null) return;
+            /* assigns currentShape a new shape of the type specified by
+            shapeType and initializes both points to the mouse position */
+            int x1 = e.getX(); int y1 = e.getY();
+            switch (shapeType) {
+                case 0: currentShape = new MyRectangle(x1, y1, x1, y1, currentColor, filledShape); break;
+                case 1: currentShape = new MyOval(x1, y1, x1, y1, currentColor, filledShape); break;
+                case 2: currentShape = new MyLine(x1, y1, x1, y1, currentColor); break;
+                default: JOptionPane.showMessageDialog(DrawPanel.this,
+                        "OMG! No shape has been selected.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            tempCount = shapeCount; // capture shapeCount
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+            if (currentShape == null) return;
+            shapeCount = tempCount; // restore shapeCount
+
+            currentShape.setX2( e.getX() );
+            currentShape.setY2( e.getY() );
+            if (shapeCount < shapes.length) {
+                shapes[shapeCount++] = currentShape;
+            }
+            currentShape = null; // clear the temporary drawing shape
+            repaint(); // update the drawing with the new shape
+        }
+
+        @Override
+        public void mouseMoved(MouseEvent e) {
+            statusLabel.setText(String.format("(%d, %d)", e.getX(), e.getY()));
+        }
+
+        @Override // allow the user to see the shape while dragging the mouse.
+        public void mouseDragged(MouseEvent e) {
+
+            if (currentShape == null) return;
+
+            currentShape.setX2( e.getX() );
+            currentShape.setY2( e.getY() );
+            if (shapeCount < shapes.length) {
+                shapes[shapeCount++] = currentShape;
+            }
+            mouseMoved(e); // update status of the current mouse location
+            repaint(); // update the drawing with the current shape
+        }
+    } // end of inner class MyMouseHandler
+} // end of class DrawPanel
+
+
+class DrawFrame extends JFrame {
+
+    private final JPanel menuPane;
+    private final DrawPanel drawPanel;
+    private final JPanel statusPane;
+    private final JButton btnUndo;
+    private final JButton btnClear;
+    private final JComboBox cboColor;
+    private final JComboBox cboShape;
+    private final String[] colorNames = {
+            "Black", "Blue", "Cyan", "Dark Gray", "Gray", "Green", "Light Gray",
+            "Magenta", "Orange", "Pink", "Red", "White", "Yellow"
+    };
+    private final String[] shapeNames = {
+            "Rectangle", "Oval", "Line"
+    };
+    private final Color[] colors = {
+            Color.BLACK, Color.BLUE, Color.CYAN, Color.DARK_GRAY, Color.GRAY,
+            Color.GREEN, Color.LIGHT_GRAY, Color.MAGENTA, Color.ORANGE,
+            Color.PINK, Color.RED, Color.WHITE, Color.YELLOW
+    };
+    private final JCheckBox chkField;
+    private final JLabel lblStatus;
+
+    public DrawFrame() {
+        super("Java Drawing App");
+
+        lblStatus = new JLabel("Status: Coordinates (X & Y) are written here.");
+        menuPane = new JPanel(new FlowLayout());
+        drawPanel = new DrawPanel(lblStatus); // content pane with passed reference
+        statusPane = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        btnUndo = new JButton("Undo");
+        btnClear = new JButton("Clear");
+        cboColor = new JComboBox(colorNames);
+        cboShape = new JComboBox(shapeNames);
+        chkField = new JCheckBox("Filled");
+
+        attachEventHandler();
+
+        menuPane.add(btnUndo);
+        menuPane.add(btnClear);
+        menuPane.add(cboColor);
+        menuPane.add(cboShape);
+        menuPane.add(chkField);
+
+        statusPane.add(lblStatus);
+
+        add(menuPane, BorderLayout.NORTH);
+        add(drawPanel, BorderLayout.CENTER);
+        add(statusPane, BorderLayout.SOUTH);
+    }
+
+    private void attachEventHandler() {
+
+        btnUndo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                drawPanel.clearLastShape();
+            }
+        });
+
+        btnClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                drawPanel.clearDrawing();
+            }
+        });
+
+        // combo box for selecting the color from the 13 predefined colors
+        cboColor.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    int selectedColorIndex = cboColor.getSelectedIndex();
+                    drawPanel.setCurrentColor( colors[selectedColorIndex] );
+                }
+            }
+        });
+
+        // combo box for selecting the shape to draw
+        cboShape.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    int selectedShapeIndex = cboShape.getSelectedIndex();
+                    drawPanel.setShapeType( selectedShapeIndex );
+                }
+            }
+        });
+
+        // specifies whether a shape should be filled or unfilled
+        chkField.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                drawPanel.setFilledShape( chkField.isSelected() );
+            }
+        });
+    }
+}
+
 public class Ex14_17_InteractiveDrawingApp {
 
     public static void main(String[] args) {

@@ -17,7 +17,7 @@ public class PassArrayReference {
         System.out.println("Effects of passing reference to entire array:\n"
                 + "The values of the original array are:");
         
-        // output orginal array elements
+        // output original array elements
         for (int value : array) {
             System.out.printf("   %d", value);                                                
         }
@@ -25,7 +25,7 @@ public class PassArrayReference {
         modifyArray( array ); // pass array reference
         System.out.println("\n\nThe values of the modified array are:");
         
-        // output orginal array elements
+        // output original array elements
         for (int value : array) {
             System.out.printf("   %d", value);                                                
         }
