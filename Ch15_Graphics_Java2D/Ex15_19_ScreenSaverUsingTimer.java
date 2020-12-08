@@ -8,8 +8,7 @@ import java.util.Random;
 
 class DrawRandomLinesUsingTimer extends JPanel implements ActionListener {
 
-    private Random random;
-    private Timer timer;
+    private final Random random;
     private final Color[] colors = {
         Color.RED, Color.WHITE, Color.BLACK, Color.GREEN,
         Color.BLUE, Color.LIGHT_GRAY, Color.YELLOW, Color.PINK,
@@ -20,8 +19,7 @@ class DrawRandomLinesUsingTimer extends JPanel implements ActionListener {
     public DrawRandomLinesUsingTimer() {
 
         random = new Random();
-        timer = new Timer(100, this);
-        timer.start();
+        new Timer(100, this).start();
     }
 
     public void paintComponent(Graphics g) {

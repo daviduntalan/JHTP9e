@@ -11,8 +11,7 @@ import java.util.Random;
 class DrawRandomShapesUsing2DAPI extends JPanel implements ActionListener {
 
     private int numberOfLinesToDraw = 100;
-    private Random random;
-    private Timer timer;
+    private final Random random;
     private final Color[] colors = {
         Color.RED, Color.WHITE, Color.BLACK, Color.GREEN,
         Color.BLUE, Color.LIGHT_GRAY, Color.YELLOW, Color.PINK,
@@ -24,8 +23,7 @@ class DrawRandomShapesUsing2DAPI extends JPanel implements ActionListener {
     public DrawRandomShapesUsing2DAPI() {
 
         random = new Random();
-        timer = new Timer(100, this);
-        timer.start();
+        new Timer(100, this).start();
     }
 
     public void setNumberOfLinesToDraw(int numberOfLinesToDraw) {
@@ -64,7 +62,7 @@ class DrawRandomShapesUsing2DAPI extends JPanel implements ActionListener {
     }
 
     public void paintComponent(Graphics g) {
-        super.paintComponent(g); // call superclass's paint method, clear screen
+        super.paintComponent(g); // call super class's paint method, clear screen
         Graphics2D g2d = (Graphics2D) g;
         setBackground(Color.BLACK);
 

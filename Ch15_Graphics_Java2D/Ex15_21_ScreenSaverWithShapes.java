@@ -9,8 +9,7 @@ import java.util.Random;
 class DrawRandomShapes extends JPanel implements ActionListener {
 
     private int numberOfLinesToDraw = 100;
-    private Random random;
-    private Timer timer;
+    private final Random random;
     private final Color[] colors = {
         Color.RED, Color.WHITE, Color.BLACK, Color.GREEN,
         Color.BLUE, Color.LIGHT_GRAY, Color.YELLOW, Color.PINK,
@@ -22,8 +21,7 @@ class DrawRandomShapes extends JPanel implements ActionListener {
     public DrawRandomShapes() {
 
         random = new Random();
-        timer = new Timer(100, this);
-        timer.start();
+        new Timer(100, this).start();
     }
 
     public void setNumberOfLinesToDraw(int numberOfLinesToDraw) {

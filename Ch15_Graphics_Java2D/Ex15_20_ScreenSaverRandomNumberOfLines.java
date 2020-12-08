@@ -9,8 +9,7 @@ import java.util.Random;
 class DrawRandomLinesUsingNumberOfLines extends JPanel implements ActionListener {
 
     private int numberOfLinesToDraw = 100;
-    private Random random;
-    private Timer timer;
+    private final Random random;
     private final Color[] colors = {
         Color.RED, Color.WHITE, Color.BLACK, Color.GREEN,
         Color.BLUE, Color.LIGHT_GRAY, Color.YELLOW, Color.PINK,
@@ -21,8 +20,7 @@ class DrawRandomLinesUsingNumberOfLines extends JPanel implements ActionListener
     public DrawRandomLinesUsingNumberOfLines() {
 
         random = new Random();
-        timer = new Timer(100, this);
-        timer.start();
+        new Timer(100, this).start();
     }
 
     public void setNumberOfLinesToDraw(int numberOfLinesToDraw) {
@@ -30,7 +28,7 @@ class DrawRandomLinesUsingNumberOfLines extends JPanel implements ActionListener
     }
 
     public void paintComponent(Graphics g) {
-        super.paintComponent(g); // call superclass's paint method, clear screen
+        super.paintComponent(g); // call super class's paint method, clear screen
         setBackground(Color.BLACK);
 
         for (int count = 0; count < numberOfLinesToDraw; ++count) {
@@ -53,7 +51,7 @@ public class Ex15_20_ScreenSaverRandomNumberOfLines {
 
     public static void main(String[] args) {
 
-        DrawRandomLinesUsingNumberOfLines instanceOfScreenSaver = new DrawRandomLinesUsingNumberOfLines();;
+        DrawRandomLinesUsingNumberOfLines instanceOfScreenSaver = new DrawRandomLinesUsingNumberOfLines();
         JFrame app = new JFrame();
         JTextField txtNumberOfLinesToDraw = new JTextField("Enter number of lines to draw");
         txtNumberOfLinesToDraw.selectAll();
